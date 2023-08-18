@@ -122,6 +122,7 @@ var Config = IniFile{
 	},
 }
 
+// loads and manages an INI configuration using XDG structure.
 func InitConfig() {
 	var err error
 	if configFilePath, err = xdg.ConfigFile("whatscli/whatscli.config"); err == nil {
@@ -161,10 +162,12 @@ func InitConfig() {
 	}
 }
 
+//stores the config path for future reference
 func GetConfigFilePath() string {
 	return configFilePath
 }
 
+// Determines WhatsApp session file path using XDG or default location.
 func GetSessionFilePath() string {
 	if sessionFilePath, err := xdg.ConfigFile("whatscli/session"); err == nil {
 		return sessionFilePath
